@@ -1,8 +1,8 @@
 <html>
-
-<head>
-<script src="gsc-score.js"> </script>
-</head>
+    <head>
+        <link rel="stylesheet" href="gsc-score.css"></link>
+        <script src="gsc-score.js"> </script>
+    </head>
     <body>
     <img src="gsc_page.png" usemap="#score-map">
     <map name="score-map">
@@ -77,5 +77,21 @@
         <area alt="" title="" href="javascript:selectPurple(10,562,813,594,851);" shape="rect" coords="562,813,594,851" />
     </map>
     <h2><button id="total" onclick="displayCurrentScore();">Total</div></h2>
+    <dialog id="valueSelector">
+            <h2>What Value</h2>
+            <menu>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+            </menu>
+    </dialog>
+
+    <dialog id="totalScoreDialog">
+        <h2>Total Value: <div id="totalScore"></div></h2>
+        <button onclick="hideCurrentScore()">Ok</button>
+    </dialog>
     </body>
 </html>

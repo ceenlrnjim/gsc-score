@@ -54,10 +54,11 @@ function scoreGreen(selections) {
 
 function selectOrange(i, tx, ty) {
     if (orange[i] === 0) {
-        n = window.prompt('Value?');
-        orange[i] = new Number(n);
-        addNumber(n, tx,ty);
-        console.log('Orange Score: ', scoreOrange(orange));
+        showValueDialog(v => {
+            orange[i] = v;
+            addNumber(v, tx,ty);
+            console.log('Orange Score: ', scoreOrange(orange));
+        });
     }
 }
 
@@ -67,10 +68,11 @@ function scoreOrange(values) {
 
 function selectPurple(i, tx, ty) {
     if (purple[i] === 0) {
-        n = window.prompt('Value?');
-        purple[i] = new Number(n);
-        addNumber(n, tx,ty);
-        console.log('Purple Score: ', scorePurple(purple));
+        showValueDialog(v => {
+            purple[i] = v;
+            addNumber(v, tx, ty);
+            console.log('Purple Score: ', scorePurple(purple));
+        });
     }
 
 }
@@ -80,7 +82,12 @@ function scorePurple(values) {
 }
 
 function displayCurrentScore() {
-    alert("Total: " + currentScore());
+    document.getElementById('totalScore').innerText = currentScore();
+    document.getElementById('totalScoreDialog').showModal();
+}
+
+function hideCurrentScore() {
+    document.getElementById('totalScoreDialog').close();
 }
 
 function currentScore() {
@@ -130,4 +137,19 @@ function addX(tx, ty) {
     img.src = 'X.png';
     img.style = 'position:absolute; top: ' + (ty+10) + '; left: ' + (tx+8) + ';';
     document.querySelector('body').appendChild(img);
+}
+
+function selectValue(v) {
+
+}
+
+function showValueDialog(callback) {
+    var selectorDialog = document.getElementById('valueSelector');
+    document.querySelectorAll('menu > button').forEach(b => {
+        b.onclick = e => {
+            callback(new Number(e.srcElement.innerText));
+            selectorDialog.close();
+        }
+    });
+    selectorDialog.showModal();
 }
